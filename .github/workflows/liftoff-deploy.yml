@@ -18,7 +18,7 @@ jobs:
             context: "."
             dockerfilePath: "Dockerfile"
             buildStrategy: "auto"
-            imageRepository: "pern-app/production"
+            imageRepository: "pern-app-test/production"
             command: ""
     steps:
       - uses: actions/checkout@v4
@@ -35,7 +35,7 @@ jobs:
         id: build
         env:
           SERVICE_NAME: ${{ matrix.service.name }}
-          IMAGE_URI: registry.digitalocean.com/liftoff-257a485101/${{ matrix.service.imageRepository }}:${{ github.sha }}
+          IMAGE_URI: registry.digitalocean.com/liftoff-21695b08fa/${{ matrix.service.imageRepository }}:${{ github.sha }}
           CONFIGURED_BUILD_STRATEGY: ${{ matrix.service.buildStrategy }}
           CONFIGURED_DOCKERFILE_PATH: ${{ matrix.service.dockerfilePath }}
           CONFIGURED_DOCKER_CONTEXT: ${{ matrix.service.context }}
@@ -147,7 +147,7 @@ jobs:
           fi
 
           PAYLOAD=$(cat <<JSONEOF
-          {"environmentId":"cmq1xzusw0002yz6p47aos3ao","serviceName":"$SERVICE_NAME","imageUri":"$IMAGE_URI","commitSha":"$GITHUB_SHA","status":"$JOB_STATUS","runUrl":"$RUN_URL","buildStrategy":"$BUILD_STRATEGY","buildPlan":$BUILD_PLAN_JSON,"buildLogsBase64":$BUILD_LOGS_JSON}
+          {"environmentId":"cmq1yfxfj00q2yz6p67pwjua1","serviceName":"$SERVICE_NAME","imageUri":"$IMAGE_URI","commitSha":"$GITHUB_SHA","status":"$JOB_STATUS","runUrl":"$RUN_URL","buildStrategy":"$BUILD_STRATEGY","buildPlan":$BUILD_PLAN_JSON,"buildLogsBase64":$BUILD_LOGS_JSON}
           JSONEOF
           )
 
